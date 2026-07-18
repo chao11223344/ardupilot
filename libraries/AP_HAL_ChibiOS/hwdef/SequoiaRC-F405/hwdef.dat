@@ -176,3 +176,12 @@ define HAL_CRSF_TELEM_ENABLED 1
 include ../include/minimize_fpv_osd.inc
 undef AP_OPTICALFLOW_ENABLED
 define AP_OPTICALFLOW_ENABLED 1
+
+# ---------------------------------------------------------------------------
+# Plane on F405 does not fit in 1MB flash with QuadPlane/VTOL enabled.
+# QuadPlane and soaring are Plane-only features, so disabling them here only
+# affects the ArduPlane build (other vehicles never reference these macros).
+# The result is a plain fixed-wing Plane firmware that fits in 1MB.
+# Same idiom as OMNIBUSF7V2/hwdef.dat and include/minimize_features.inc.
+define HAL_QUADPLANE_ENABLED 0
+define HAL_SOARING_ENABLED 0
